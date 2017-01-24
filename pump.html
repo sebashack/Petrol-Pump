@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>petrol-pump</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      .marker { font-size: 80px; }
+      .etiquete { font-size: 20px; }
+      .key {
+      background-color: #12e87d;
+      font-size: 25px;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <a class="navbar-brand" style="color: #42cef4;" href="#">PETROL-PUMP</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5">
+	  <h1 style="color: #42cef4; background-color: #333" > FRP-PETROLEUM </h1>
+	</div>
+	<div class="col-sm-2"></div>
+        <div class="col-sm-3 marker">
+	  <p style="background-color: #42cef4;"> 0.00 </p>
+	  <p class="etiquete"> dollars </p>
+	</div>
+        <div class="col-sm-2"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 marker">
+	  <p style="background-color: #42cef4;"> 0.00 </p>
+	  <p class="etiquete"> preset </p>
+	</div>
+	<div class="col-sm-2"></div>
+        <div class="col-sm-3 marker">
+	  <p style="background-color: #42cef4;"> 0.00 </p>
+	  <p class="etiquete"> liters </p>
+	</div>
+        <div class="col-sm-2"></div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="row">
+	<div class="col-sm-1 etiquete key"><p>1</p></div>
+	<div class="col-sm-1 etiquete key"><p>2</p></div>
+	<div class="col-sm-1 etiquete key"><p>3</p></div>
+      </div>
+      <div class="row">
+	<div class="col-sm-1 etiquete key"><p>4</p></div>
+	<div class="col-sm-1 etiquete key"><p>5</p></div>
+	<div class="col-sm-1 etiquete key"><p>6</p></div>
+      </div>
+      <div class="row">
+	<div class="col-sm-1 etiquete key"><p>7</p></div>
+	<div class="col-sm-1 etiquete key"><p>8</p></div>
+	<div class="col-sm-1 etiquete key"><p>9</p></div>
+      </div>
+      <div class="row">
+	<div class="col-sm-1 etiquete key"></div>
+	<div class="col-sm-1 etiquete key"><p>0</p></div>
+	<div class="col-sm-1 etiquete key"><p>clear</p></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-4 marker">
+	  <p style="background-color: #42cef4;" data-pumping="false" id="price1"> 0.00 </p>
+	  <p class="etiquete"> fuel1 </p>
+	  <img src="./assets/nozzle.jpg" alt="fuel1" height="85" width="85" id="nozzle1">
+	</div>
+        <div class="col-sm-4 marker">
+	  <p style="background-color: #42cef4;" data-pumping="false" id="price2"> 0.00 </p>
+	  <p class="etiquete"> fuel2 </p>
+	  <img src="./assets/nozzle.jpg" alt="fuel2" height="85" width="85" id="nozzle2">
+	</div>
+	<div class="col-sm-4 marker">
+	  <p style="background-color: #42cef4;" data-pumping="false" id="price3"> 0.00 </p>
+	  <p class="etiquete"> fuel3 </p>
+	  <img src="./assets/nozzle.jpg" alt="fuel3" height="85" width="85" id="nozzle3">
+	</div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <!-- Browserified JavaScript -->
+    <script src="dist/petrol-pump.js"></script>
+  </body>
+</html>
