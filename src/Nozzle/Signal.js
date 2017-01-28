@@ -5,6 +5,7 @@ exports.signalNozzle = function(nozzle) {
       var out = constant(0);
       var noz = document.getElementById(nozzle);
       var pri = document.getElementById(price);
+
       noz.addEventListener("click", function() {
 	if (pri.dataset.pumping === "true") {
 	  pri.dataset.pumping = "false";
@@ -13,9 +14,11 @@ exports.signalNozzle = function(nozzle) {
 	}
 	out.set(0);
       }, false);
+
       return function() {
 	return out;
       };
+
     };
   };
 };
