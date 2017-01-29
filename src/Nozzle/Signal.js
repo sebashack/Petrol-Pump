@@ -30,7 +30,21 @@ exports.displayPrice = function(price) {
       var pumping = pri.dataset.pumping === "true" ? true : false;
       if(pumping) {
 	var newPrice = parseFloat(pri.textContent) + r;
-	pri.textContent = newPrice.toFixed(3);
+	pri.textContent = newPrice.toFixed(2);
+      }
+    };
+  };
+};
+
+exports.displayTotal = function(price) {
+  return function(r) {
+    return function() {
+      var total = document.getElementById("dollars");
+      var pri = document.getElementById(price);
+      var pumping = pri.dataset.pumping === "true" ? true : false;
+      if(pumping) {
+	var newTotal = parseFloat(total.textContent) + r;
+	total.textContent = newTotal.toFixed(2);
       }
     };
   };
