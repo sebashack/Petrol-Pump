@@ -26,5 +26,5 @@ pumpFuel :: forall eff.
                 (Signal (Eff (dom :: DOM | eff) Unit))
 pumpFuel nozzle price rate = do
   signal1 <- signalNozzle nozzle price constant
-  let signal2 = signal1 `merge` (every 250.0 ~> (\t -> rate))
+  let signal2 = signal1 `merge` (every 1000.0 ~> (\t -> rate))
   pure $ signal2  ~> displayPrice price

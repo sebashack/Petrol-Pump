@@ -8,6 +8,8 @@ import DOM (DOM)
 import Signal (Signal, runSignal, merge, sampleOn, filter, (~>))
 import Nozzle.Signal (pumpFuel)
 import KeyPad.Signal (setPreset)
+import Liter.Signal (fuelFlow)
+
 
 main :: forall eff. Eff (dom :: DOM | eff) Unit
 main = do
@@ -16,4 +18,5 @@ main = do
   signalFuel3 <- pumpFuel "nozzle3" "price3" 1.65
   let signalFuel = signalFuel1 `merge` signalFuel2 `merge` signalFuel3
   signalPreset <- setPreset
-  runSignal $ signalFuel `merge`signalPreset
+  flow <- fuelFlow 0.157
+  runSignal $ signalFuel `merge` signalPreset `merge` flow
