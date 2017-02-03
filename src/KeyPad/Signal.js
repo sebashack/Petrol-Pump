@@ -31,9 +31,20 @@ exports.displayPreset = function(r) {
   };
 };
 
-exports.clearPreset = function(r) {
+exports.getPresetVal = function() {
   return function() {
     var content = document.getElementById('preset');
-    content.textContent = "0.00";
+    return parseFloat(content.textContent, 10);
+  };
+};
+
+exports.clearPreset = function(r) {
+  return function() {
+    document.getElementById('preset').textContent = "0.00";
+    document.getElementById('liters').textContent = "0.00";
+    document.getElementById('dollars').textContent = "0.00";
+    document.getElementById('price1').textContent = "0.00";
+    document.getElementById('price2').textContent = "0.00";
+    document.getElementById('price3').textContent = "0.00";
   };
 };

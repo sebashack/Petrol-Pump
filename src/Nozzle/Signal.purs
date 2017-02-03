@@ -1,4 +1,4 @@
-module Nozzle.Signal (pumpFuel, totalPrice) where
+module Nozzle.Signal (pumpFuel, totalPrice, stopNozzles) where
 
 import Prelude (Unit, bind, ($), pure, unit)
 import Control.Monad.Eff (Eff)
@@ -22,6 +22,10 @@ foreign import displayTotal :: forall eff c.
                                String
                             -> Number
                             -> Eff (dom :: DOM | eff) Unit
+
+foreign import stopNozzles :: forall eff c.
+                              Number
+                           -> Eff (dom :: DOM | eff) Unit
 
 
 signalRate :: Number -> Signal Number

@@ -1,4 +1,4 @@
-module KeyPad.Signal (setPreset) where
+module KeyPad.Signal (setPreset, emitPreset) where
 
 import Data.Array
 import Control.Monad.Eff (Eff)
@@ -6,7 +6,8 @@ import DOM (DOM)
 import Data.Foldable (foldr)
 import Data.Traversable (sequence)
 import Prelude (Unit, bind, flip, pure, unit, ($), (<$>))
-import Signal (Signal, constant, merge, (~>))
+import Signal (Signal, constant, merge, unwrap, (~>))
+import Signal.Time (every)
 
 
 foreign import signalKey :: forall eff c.
@@ -18,6 +19,9 @@ foreign import displayPreset :: forall eff.
                                 Number
                              -> Eff (dom :: DOM | eff) Unit
 
+foreign import getPresetVal :: forall eff.
+                               Unit
+                            -> Eff (dom :: DOM | eff) Number
 
 foreign import clearPreset :: forall eff.
                               Number
@@ -36,10 +40,13 @@ keys = ["key1",
         "key9",
         "key0"]
 
-setPreset :: forall eff . Eff (dom :: DOM | eff)
-                              (Signal (Eff (dom :: DOM | eff) Unit))
+setPreset :: forall eff. Eff (dom :: DOM | eff)
+                             (Signal (Eff (dom :: DOM | eff) Unit))
 setPreset = do
   clear <- signalKey "clear" constant
   signals <- sequence $ (flip signalKey) constant <$> keys
   let signal = foldr merge (constant 0.0) signals
   pure $ (signal ~> displayPreset) `merge` (clear ~> clearPreset)
+
+emitPreset :: forall eff. Eff (dom :: DOM | eff) (Signal Number)
+emitPreset = unwrap $ (every 25.0 ~> (\_ -> unit)) ~> getPresetVal

@@ -1,14 +1,13 @@
-
 module Main where
 
 import Prelude
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE)
 import DOM (DOM)
-import Signal (Signal, runSignal, merge, sampleOn, filter, (~>))
-import Nozzle.Signal (pumpFuel, totalPrice)
-import KeyPad.Signal (setPreset)
+import KeyPad.Signal (setPreset, emitPreset)
 import Liter.Signal (fuelFlow)
+import Nozzle.Signal (pumpFuel, totalPrice, stopNozzles)
+import Signal (Signal, filter, merge, runSignal, sampleOn, unwrap, (~>))
 
 
 main :: forall eff. Eff (dom :: DOM | eff) Unit
@@ -23,4 +22,9 @@ main = do
       signalDollars = signalDollars1 `merge` signalDollars2 `merge` signalDollars3
   signalPreset <- setPreset
   flow <- fuelFlow 0.157
-  runSignal $ signalFuel `merge` signalDollars `merge` signalPreset `merge` flow
+  stopSignal <- emitPreset
+  runSignal $ signalFuel `merge`
+              signalDollars `merge`
+              signalPreset `merge`
+              flow `merge`
+              (stopSignal ~> stopNozzles)

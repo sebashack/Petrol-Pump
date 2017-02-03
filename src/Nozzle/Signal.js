@@ -1,4 +1,3 @@
-// -------------Helpers----------------->>
 exports.signalNozzle = function(nozzle) {
   return function(price) {
     return function(constant) {
@@ -49,4 +48,15 @@ exports.displayTotal = function(price) {
     };
   };
 };
-// <<-------------------------------------
+
+exports.stopNozzles = function(r) {
+  return function() {
+    var total = document.getElementById("dollars");
+    var diff = r - parseFloat(total.textContent);
+    if (diff <= 0) {
+      document.getElementById("price1").dataset.pumping = "false";
+      document.getElementById("price2").dataset.pumping = "false";
+      document.getElementById("price3").dataset.pumping = "false";
+    }
+  };
+};
